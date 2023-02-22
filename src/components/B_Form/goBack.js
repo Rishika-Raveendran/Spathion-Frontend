@@ -17,8 +17,8 @@ function GoBack({ formData, prevStep, onSubmit, submitting }) {
       ) : (
         <>
           {" "}
-          <div className="container">
-            <h2 className="text-center mb-3">Review submission</h2>
+          <div className="container goBack p-5">
+            <h2 className="text-center mb-5">Review submission</h2>
             <table className="table table-striped">
               <tbody>
                 <tr>
@@ -100,8 +100,10 @@ function GoBack({ formData, prevStep, onSubmit, submitting }) {
               </tbody>
             </table>
           </div>
-          <button onClick={prevStep}>Previous</button>
-          <button onClick={onSubmit}>Submit</button>
+      <div style={{display:"flex",justifyContent:"space-between"}} className="bmint pb-5 px-5" >
+
+          <button className="btn" onClick={prevStep}>Previous</button>
+          <button className="btn" onClick={onSubmit}>Submit</button></div>
         </>
       )}
     </>

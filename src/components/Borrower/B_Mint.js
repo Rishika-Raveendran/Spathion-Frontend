@@ -5,7 +5,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const B_Mint = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <Form>
           <br />
@@ -15,7 +15,7 @@ const B_Mint = () => {
             </div>
           </div>
           <br />
-          <div className="CSS1" style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center" }}>
             <br />
 
             <ConnectButton />
@@ -29,8 +29,8 @@ const B_Mint = () => {
           <br />
         </Form>
       </Container>
-      <Container>
-        <Table striped bordered hover>
+      <Container className="goBack bmint">
+        <Table striped>
           <thead>
             <tr>
               <th>Sl N.o</th>

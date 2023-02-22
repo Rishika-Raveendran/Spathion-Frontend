@@ -1,10 +1,11 @@
 import React from "react";
 import { Table, Button, Form, Card, Container } from "react-bootstrap";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import "./Validator.css"
 
 const V_Uploadedarpas = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <br />
         <div>
@@ -34,7 +35,7 @@ const V_Uploadedarpas = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-                <Button variant="danger">Reject</Button>
+                <Button className="reject">Reject</Button>
               </td>
             </tr>
             <tr>

@@ -1,9 +1,11 @@
 import React from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import "./Validator.css"
+
 const V_Invoicedetails = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <br />
         <div>
@@ -14,7 +16,7 @@ const V_Invoicedetails = () => {
         <div className="my-5">
           <ConnectButton />
         </div>
-        <Table striped bordered hover>
+        <Table striped bordered hover className="bmint">
           <thead>
             <tr>
               <th>Sl N.o</th>
@@ -32,7 +34,8 @@ const V_Invoicedetails = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-                <Button variant="danger">Reject</Button>
+              <Button className="reject">Reject</Button>
+
               </td>
             </tr>
             <tr>

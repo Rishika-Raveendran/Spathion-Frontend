@@ -9,10 +9,10 @@ function CompanyDetails({
   inputValues,
 }) {
   return (
-    <>
-      <div className="page">
+    <div className="p-5 bmint">
+      <div className="page container">
         {" "}
-        <div className="CSS1">
+        <div>
           <Card.Header>
             <h5> Company details</h5>
           </Card.Header>
@@ -148,9 +148,10 @@ function CompanyDetails({
           </Form.Group>
         </div>
       </div>
-      <button onClick={prevStep}>Previous</button>
-      <button onClick={nextStep}>Next</button>
-    </>
+      <div style={{display:"flex",justifyContent:"space-between"}}>
+      <button className="btn mt-3" onClick={prevStep}>Previous</button>
+      <button className="btn mt-3 ml-3" onClick={nextStep}>Next</button></div>
+    </div>
   );
 }
 

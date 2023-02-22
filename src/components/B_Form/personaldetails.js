@@ -4,13 +4,20 @@ import { Form, Card } from "react-bootstrap";
 
 function Personaldetails({ nextStep, handleChange,inputValues }) {
   return (
-    <>
-      <div className="page">
-        <div className="CSS1">
+    <div className="p-5 ">
+
+      <div className="page container">
+        <div >
           <Card.Header>
             <h5> Personal details</h5>
           </Card.Header>
           <br />
+          <ConnectButton/>
+          <br />
+
+          <br />
+
+
           <Form.Label>Full Name</Form.Label>
           <Form.Control
             type="text"
@@ -63,12 +70,12 @@ function Personaldetails({ nextStep, handleChange,inputValues }) {
           />
 
           <br />
-          <ConnectButton/>
         </div>
       </div>
-      <button onClick={nextStep}>Next</button>
+      <div className="bmint">
+      <button  className="mt-3 btn" onClick={nextStep}>Next</button></div>
       {/* <button onClick={prevStep}>Previous</button> */}
-    </>
+    </div>
   );
 }
 

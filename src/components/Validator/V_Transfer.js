@@ -5,7 +5,7 @@ import "./Validator.css"
 
 const V_Transfer = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <Form>
           <br />
@@ -25,9 +25,10 @@ const V_Transfer = () => {
               <Form>
                 <br />
 
-                <ConnectButton />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                <ConnectButton /></div>
 
-                <br />
+                {/* <br />
                 <br />
                 <br />
 
@@ -42,8 +43,11 @@ const V_Transfer = () => {
                 <br />
                 <br />
                 <hr />
-                <br />
+                <br /> */}
 
+                <br />
+                <br />
+                <br />
                 <br />
                 <Form.Label>
                   <h4>Select borrower/address: </h4>

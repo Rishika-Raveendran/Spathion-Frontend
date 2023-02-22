@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar,Dropdown } from "react-bootstrap";
+import "./Validator.css"
 // import { Link } from "react-router-dom";
 const L_Header = () => {
   return (
@@ -16,21 +17,37 @@ const L_Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="/Validator/whitelist" >Whitelisting</Nav.Link>
+           
+           
+{/* ------------------------------------------------------------------------------------- */}
 
-            <Nav.Link href="/Validator/Lprofiles">Lender Profiles</Nav.Link>
-            <Nav.Link href="/Validator/Bprofiles">Borrower Profiles</Nav.Link>
-            <Nav.Link href="/Validator/invoicedetails">
-              Invoices Details
-            </Nav.Link>
-            <Nav.Link href="/Validator/uploadedinvoices">
-              Uploaded Invoices
-            </Nav.Link>
-            <Nav.Link href="/Validator/uploadedarpas">Uploaded ARPA</Nav.Link>
-            <Nav.Link href="/Validator/approved">Approved invoices</Nav.Link>
-            <Nav.Link href="/Validator/transfer">Transfer section</Nav.Link>
+<Dropdown>
+      <Dropdown.Toggle id="dropdown-basic">
+        Profiles
+      </Dropdown.Toggle>
 
-            <Nav.Link href="/">Logout</Nav.Link>
+      <Dropdown.Menu>
+        <Dropdown.Item href="/Validator/Bprofiles">Borrowers</Dropdown.Item>
+        <Dropdown.Item href="/Validator/Lprofiles">Lenders</Dropdown.Item>
+        
+      </Dropdown.Menu>
+    </Dropdown>
+    <Dropdown>
+      <Dropdown.Toggle id="dropdown-basic">
+        Uploaded documents
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="/Validator/uploadedinvoices">Invoices</Dropdown.Item>
+        <Dropdown.Item href="/Validator/uploadedarpas">ARPA</Dropdown.Item>
+        
+      </Dropdown.Menu>
+    </Dropdown>
+
+{/* ------------------------------------------------------------------------------------------ */}
+<Nav.Link className="navlink" href="/Validator/approved">Approved invoices</Nav.Link>
+            <Nav.Link className="navlink" href="/Validator/transfer">Transfer section</Nav.Link>
+            <Nav.Link className="navlink" href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

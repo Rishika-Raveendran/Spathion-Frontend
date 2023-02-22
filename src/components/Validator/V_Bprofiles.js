@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Button,  Container } from "react-bootstrap";
 const V_Bprofiles = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <br />
         <div >
@@ -31,7 +31,7 @@ const V_Bprofiles = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-                <Button variant="danger">Reject</Button>
+                <Button className="reject">Reject</Button>
               </td>
             </tr>
             <tr>
@@ -42,7 +42,7 @@ const V_Bprofiles = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-                <Button variant="danger">Reject</Button>
+                <Button className="reject">Reject</Button>
               </td>
             </tr>
             <tr>

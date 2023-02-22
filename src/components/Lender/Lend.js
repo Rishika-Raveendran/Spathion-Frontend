@@ -5,7 +5,7 @@ import "./L_CSS.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Lend = () => {
- 
+
   return (
     <div className="page">
       <Container>
@@ -20,36 +20,11 @@ const Lend = () => {
           <div style={{ textAlign: "center" }}>
             <Form>
               <br />
-              {/* <div className="CSS2"> */}
-              <br />
-
-              {/* <Button
-                id="connectButton"
-                variant="warning"
-                onClick={connectFunctions.connectWallet()}
-              >
-                Connect to Metamask
-              </Button> */}
-              <ConnectButton/>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <ConnectButton /></div>
 
               <br />
               <br />
-              <hr />
-
-              <br />
-
-              <br />
-              {/* <Form.Label>
-                <h4>Amount available: </h4>
-              </Form.Label>
-              <Card>
-                <Card.Body id="walletAmount"></Card.Body>
-              </Card> */}
-              <br />
-              <br />
-              <hr />
-              <br />
-
               <br />
               <br />
               <Form.Label>
@@ -63,7 +38,7 @@ const Lend = () => {
               <br />
 
               <br />
-              <p >
+              <p style={{ color: "white" }}>
                 Your amount will be locked for a period of 30 days once lent.
               </p>
               <br />
@@ -97,7 +72,7 @@ const Lend = () => {
               <br />
 
               <br />
-              <p>
+              <p style={{ color: "gray" }}>
                 The rate of interest for your amount deposited is 14% which can
                 be withdrawn only after the 30 days locking period.
               </p>

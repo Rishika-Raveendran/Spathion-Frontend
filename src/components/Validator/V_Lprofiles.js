@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Button, Form, Card, Container } from "react-bootstrap";
 const V_Lprofiles = () => {
   return (
-    <div>
+    <div className="page bmint">
       <Container>
         <Form>
           <br />

@@ -1,11 +1,12 @@
 import React from "react";
 import { Form, Card } from "react-bootstrap";
 
-function PersonalFiles({ nextStep, prevStep,handleFileChange,inputValues}) {
+function PersonalFiles({ nextStep, prevStep, handleFileChange, inputValues }) {
   return (
-    <>
+    <div className="p-5 bmint">
+
       <div className="page">
-        <div className="CSS1">
+        <div >
           <Card.Header>
             <h5> Identity and Address proof</h5>
           </Card.Header>
@@ -18,7 +19,7 @@ function PersonalFiles({ nextStep, prevStep,handleFileChange,inputValues}) {
 
               onChange={handleFileChange}
             />
-         Uploaded: {inputValues["identityProof"]&&inputValues["identityProof"].name}
+            Uploaded: {inputValues["identityProof"] && inputValues["identityProof"].name}
           </Form.Group>
           <br />
           <Form.Group controlId="formFile" className="mb-3">
@@ -30,12 +31,14 @@ function PersonalFiles({ nextStep, prevStep,handleFileChange,inputValues}) {
               onChange={handleFileChange}
             />
           </Form.Group>
-          Uploaded: {inputValues["addressProof"]&&inputValues["addressProof"].name}
+          Uploaded: {inputValues["addressProof"] && inputValues["addressProof"].name}
         </div>
       </div>
-      <button onClick={prevStep}>Previous</button>
-      <button onClick={nextStep}>Next</button>
-    </>
+      <div style={{display:"flex",justifyContent:"space-between"}}>
+
+      <button className="btn mt-3" onClick={prevStep}>Previous</button>
+      <button className="btn mt-3 ml-3" onClick={nextStep}>Next</button></div>
+    </div>
   );
 }
 

@@ -6,14 +6,14 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 const V_Whitelist = () => {
  
   return (
-    <div>
+    <div className="page pb-5">
       <Container>
         <Form>
           <br />
           <div>
         
               <div style={{ textAlign: "center" }}>
-                <h3>Whitelising window</h3>
+                <h3>Whitelisting window</h3>
               </div>
            
           </div>
@@ -35,7 +35,7 @@ const V_Whitelist = () => {
                 <br />
 
                 <br />
-                <Form.Label>
+                <Form.Label style={{display:"flex",justifyContent:"start",fontSize:"16px"}}>
                   <h4>Enter address: </h4>
                 </Form.Label>
                 <Form.Control type="alphanumeric" placeholder="Address" />
@@ -62,7 +62,7 @@ const V_Whitelist = () => {
         <Container>
           <Form>
             <br />
-            <div className="CSS1">
+            <div>
               <Card.Header>
                 <div style={{ textAlign: "center" }}>
                   <h3>Whitelisted addresses</h3>
@@ -76,7 +76,7 @@ const V_Whitelist = () => {
       <div>
         <Container>
           <Form>
-            <div className="CSS1">
+            <div >
               <br />
               <br />
             </div>

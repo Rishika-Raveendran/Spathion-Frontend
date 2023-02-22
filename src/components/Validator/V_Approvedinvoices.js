@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Form, Container } from "react-bootstrap";
 const V_Approvedinvoices = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <Form>
           <br />

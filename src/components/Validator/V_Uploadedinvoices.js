@@ -4,7 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const V_Uploadedinvoices = () => {
   return (
-    <div>
+    <div className="page">
       <Container>
         <br />
         <div>
@@ -34,7 +34,7 @@ const V_Uploadedinvoices = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-                <Button variant="danger">Reject</Button>
+                <Button className="reject">Reject</Button>
               </td>
             </tr>
             <tr>

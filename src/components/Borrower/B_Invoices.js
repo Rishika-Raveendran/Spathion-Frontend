@@ -6,7 +6,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 const B_Invoices = () => {
   return (
     <div>
-      <Container>
+      <Container className="page">
         <br />
 
         <Form>
@@ -17,7 +17,7 @@ const B_Invoices = () => {
             </div>
           </div>
           <br />
-          <div className="CSS1" style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center" }}>
             <br />
 
             <ConnectButton />
@@ -30,47 +30,48 @@ const B_Invoices = () => {
           </div>
           <br />
         </Form>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Sl N.o</th>
-              <th>The Invoice</th>
-              <th>Amount</th>
-              <th>Repayment date</th>
-              <th>Repay</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>
-                <Button variant="primary">Repay</Button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
+       
+          <Table striped > 
+            <thead>
+              <tr>
+                <th>Sl N.o</th>
+                <th>The Invoice</th>
+                <th>Amount</th>
+                <th>Repayment date</th>
+                <th>Repay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>
+                  <Button variant="primary">Repay</Button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
 
-              <td>
-                <Button variant="primary">Repay</Button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>
-                <Button variant="primary">Repay</Button>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+                <td>
+                  <Button variant="primary">Repay</Button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>
+                  <Button variant="primary">Repay</Button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
       </Container>
     </div>
   );
