@@ -11,7 +11,7 @@ import Lend from "./components/Lender/Lend";
 import B_Header from "./components/Borrower/B_Header";
 import B_Info from "./components/Borrower/B_Info";
 import B_Profile from "./components/Borrower/B_Profile";
-import B_Invoicedetails from "./components/Borrower/B_Invoicedetails";
+import B_Invoicedetailstmp from "./components/Borrower/B_Invoicedetailstmp";
 import B_Mint from "./components/Borrower/B_Mint";
 import B_Invoices from "./components/Borrower/B_Invoices";
 
@@ -32,6 +32,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet,goerli, polygon, optimism } from 'wagmi/chains'
 
 import { publicProvider } from "wagmi/providers/public";
+import Login from "./Screens/Login";
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, goerli, optimism],
@@ -56,6 +57,7 @@ const App = () => {
             <main>
               <Route exact path="/">
                 <LandingPage />
+                {/* <Login/> */}
                 <Footer />
               </Route>
               <Route exact path="/Borrower/info">
@@ -68,7 +70,7 @@ const App = () => {
               </Route>
               <Route exact path="/Borrower/invoicedetails">
                 <B_Header />
-                <B_Invoicedetails />
+                <B_Invoicedetailstmp />
               </Route>
               <Route exact path="/Borrower/mint">
                 <B_Header />

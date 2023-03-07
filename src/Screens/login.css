@@ -1,0 +1,40 @@
+.loginPage {
+    height: 100vh;
+    background: linear-gradient(
+        109.6deg,
+        rgb(36, 45, 57) 5.2%,
+        rgb(16, 37, 60) 35.2%,
+        rgb(0, 0, 0) 80.6%
+      );
+     
+      background-position: center;
+      background-size: cover;
+  }
+  
+  .loginPage button {
+    background-color: #484e54;
+    color: #c4ffdd;
+  }
+  .loginPage h1 {
+    color: #c4ffdd;
+  }
+  .loginPage input {
+    border: none;
+    border-bottom: 2px solid #c4ffdd;
+    border-radius: 0%;
+    background-color: transparent;
+    color: rgb(197, 197, 197);
+  }
+  .login {
+    background-color:  rgb(16, 37, 60);
+    border: none;
+    width:60vw;
+    border-radius: 10px;
+   
+  }
+  
+  @media screen and (max-width: 768px) {
+    .login {
+      background-color: transparent;
+    }
+  }

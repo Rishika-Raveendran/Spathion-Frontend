@@ -1,6 +1,24 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Table, Button,  Container } from "react-bootstrap";
+import Axios from "axios"
+import baseUrl from "../baseUrl";
 const V_Bprofiles = () => {
+
+  const [borrowers, setBorrowers] = useState([])
+  const [first, setfirst] = useState(1)
+
+  //Fetching borrowers from database
+  useEffect(() => {
+    Axios.get(`${baseUrl}/borrower`).then((res)=>{
+      
+      setBorrowers(res.data)
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err)
+      alert("Could not fetch borrowers! Try again")
+    })
+  }, [first])
+
   return (
     <div className="page">
       <Container>
@@ -13,7 +31,7 @@ const V_Bprofiles = () => {
          
         </div>
 
-        <Table striped bordered hover>
+        {borrowers.length!=0?(<Table striped bordered hover>
           <thead>
             <tr>
               <th>Sl N.o</th>
@@ -23,9 +41,9 @@ const V_Bprofiles = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>-</td>
+           {borrowers.map((borrower,index)=>( <tr>
+              <td>{index+1}</td>
+              <td>{borrower.companyName}</td>
 
               <td>
                 <Button variant="primary">Approve</Button>
@@ -33,31 +51,10 @@ const V_Bprofiles = () => {
               <td>
                 <Button className="reject">Reject</Button>
               </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>-</td>
-
-              <td>
-                <Button variant="primary">Approve</Button>
-              </td>
-              <td>
-                <Button className="reject">Reject</Button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>-</td>
-
-              <td>
-                <Button variant="primary">Approve</Button>
-              </td>
-              <td>
-                <Button variant="danger">Reject</Button>
-              </td>
-            </tr>
+            </tr>))}
+        
           </tbody>
-        </Table>
+        </Table>):<p className="content">No lenders registered!</p>}
       </Container>
     </div>
   );
