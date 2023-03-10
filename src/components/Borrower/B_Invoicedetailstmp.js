@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import GoBack from "../B_Form/goBack";
+// import GoBack from "../B_Form/goBack";
 import CustomerDetails from "../B_Invoice/Customer";
 import Invoice from "../B_Invoice/Invoice";
 import InvoiceDetails from "../B_Invoice/InvoiceDetails";
@@ -9,7 +9,10 @@ function B_Invoicedetails() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
-
+  let username;
+  if (typeof window !== undefined) {
+    username = window.sessionStorage.getItem("user");
+  }
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -35,7 +38,8 @@ function B_Invoicedetails() {
     setSubmitting(true);
     var data = new FormData();
     //Appending inputs to formData
-    
+
+    data.append("username", username);
     data.append("companyName", formData["companyName"]);
     data.append("companyEmail", formData["companyEmail"]);
     data.append("companyContactNumber", formData["companyContactNumber"]);
@@ -53,7 +57,7 @@ function B_Invoicedetails() {
 
     data.append("documents", formData["invoice"]);
     data.append("documents", formData["arpa"]);
-console.log(data)
+    console.log(data);
     // ---------------------Post data -----------------------
     Axios.post("http://localhost:3001/invoice", data)
       .then((response) => {
@@ -86,8 +90,8 @@ console.log(data)
     loanRequired: "",
     invoice: "",
     arpa: "",
-    invoiceVerified:false,
-    arpaVerified:false
+    invoiceVerified: false,
+    arpaVerified: false,
   });
 
   switch (step) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Table, Container, Form } from "react-bootstrap";
+import { Button,  Table, Container, Form } from "react-bootstrap";
 import "./B_CSS.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 

@@ -6,12 +6,16 @@ import Personaldetails from "../B_Form/personaldetails";
 import PersonalFiles from "../B_Form/personalFiles";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
-import { InfinitySpin } from "react-loader-spinner";
+
 
 function B_Profile() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
+  let username;
+  if (typeof window !== undefined) {
+    username = window.sessionStorage.getItem("user");
+  }
 
   const nextStep = () => {
     setStep(step + 1);
@@ -38,6 +42,7 @@ function B_Profile() {
     setSubmitting(true);
     var data = new FormData();
     //Appending inputs to formData
+    data.append("username", username);
     data.append("fullName", formData["fullName"]);
     data.append("email", formData["email"]);
     data.append("nationality", formData["nationality"]);
@@ -66,7 +71,7 @@ function B_Profile() {
 
         alert("Borrower profile created!");
         setSubmitting(false);
-        history.push("/")
+        history.push("/Borrower/invoicedetails");
       })
       .catch((error) => {
         console.error(error);

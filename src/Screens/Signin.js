@@ -1,52 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
 import Axios from "axios";
 import baseUrl from "../components/baseUrl";
 import { InfinitySpin } from "react-loader-spinner";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { db, auth, storage } from "../Firebase";
-import { UserContext } from "../components/UserContext";
 
-const Login = ({ setIsLoggedIn }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Signin = () => {
+  // const [username, setUsername] = useState("")
+  // const [password, setPassword] = useState("")
   const [errorMsg, setErrorMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  // const { username, setUserName } = useContext(UserContext);
-  const history = useHistory();
-  const handleFormSubmit = async (e) => {
-    setSubmitting(true);
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signup = (e) => {
     e.preventDefault();
-
     auth
       .fetchSignInMethodsForEmail(email)
       .then((result) => {
         if (result.length > 0) {
-          auth
-            .signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-              auth.onAuthStateChanged((user) => {
-                if (user) {
-                  if (user.emailVerified) {
-                    if (typeof window !== "undefined") {
-                      window.sessionStorage.setItem("user", email);
-                      window.localStorage.setItem("user", email);
-                    }
-                    setIsLoggedIn(true);
-                    setSubmitting(false);
-                  } else {
-                    setSubmitting(false);
-                    alert("Verify email to login");
-                    history.push("/");
-                  }
-                }
-              });
-            });
+          alert("User already registered!");
         } else {
-          alert("User not found! Register first");
-          history.push("/signup");
+          auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              // send verification mail.
+              console.log("Happening");
+              userCredential.user.sendEmailVerification();
+              // auth.signOut();
+              alert("Verifiction email sent. Check your mail");
+            });
         }
       })
 
@@ -59,17 +43,17 @@ const Login = ({ setIsLoggedIn }) => {
         <div className="h-screen flex ">
           <div className="w-full max-w-md m-auto  py-10 px-16 login">
             <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-              LOGIN
+              REGISTER
             </h1>
 
-            <form onSubmit={(e) => handleFormSubmit(e)}>
+            <form onSubmit={(e) => signup(e)} id="signupForm">
               <div>
                 <input
                   type="text"
                   className={`w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                  id="username"
-                  placeholder="Your Username"
-                  required={true}
+                  id="email"
+                  placeholder="Your Email"
+                  required="true"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -79,20 +63,21 @@ const Login = ({ setIsLoggedIn }) => {
                   className={`w-full p-2 text-primary rounded-md outline-none text-sm mt-7 mb-5 transition duration-150 ease-in-out`}
                   id="password"
                   placeholder="Your Password"
-                  required={true}
+                  required="true"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="errorMsg text-red small">{errorMsg}</div>
+
               <div className="text-white">
-                Don't have an account yet? <Link to="/signup">Sign up</Link>
+                Already have an account yet? <Link to="/">Login</Link>
               </div>
               <div className="flex justify-center items-center mt-6">
                 <button
                   type="submit"
                   className="py-2 px-4 text-sm text-white rounded border border-green  focus:border-red"
                 >
-                  Login
+                  Register
                 </button>
               </div>
             </form>
@@ -106,4 +91,4 @@ const Login = ({ setIsLoggedIn }) => {
   );
 };
 
-export default Login;
+export default Signin;

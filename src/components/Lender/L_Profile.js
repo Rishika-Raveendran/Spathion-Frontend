@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
 // import { useForm } from "react-hook-form";
 import { storage } from "../../Firebase";
@@ -14,7 +14,10 @@ const L_Profile = () => {
   const [submitting, setSubmitting] = useState(false);
   const [selectedFile, setFile] = useState(false);
   const formRef = useRef(null);
-
+  let username;
+  if (typeof window !== undefined) {
+    username = window.sessionStorage.getItem("user");
+  }
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -43,19 +46,19 @@ const L_Profile = () => {
           .ref(`dyuthi/${fileObj.name}`)
           .getDownloadURL()
           .then((res) => {
-          
             let obj = {
+              username: username,
               fullName: fullName,
               email: email,
               nationality: nationality,
               identityProof: res,
             };
-
+            console.log(obj);
             //---------------------Axios post----------------------------------------------
             Axios.post(`${baseUrl}/lender`, obj)
               .then(() => {
                 setSubmitting(false);
-                
+
                 alert("Lender profile created!");
                 formRef.current.reset();
               })
@@ -130,9 +133,7 @@ const L_Profile = () => {
 
               <br />
 
-              <button type="submit">
-                Submit
-              </button>
+              <button type="submit">Submit</button>
               <br />
             </div>
             <br />
