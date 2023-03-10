@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
-import Axios from "axios";
-import baseUrl from "../components/baseUrl";
+
 import { InfinitySpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { db, auth, storage } from "../Firebase";
@@ -41,7 +40,7 @@ const Signin = () => {
     <div className="loginPage">
       {submitting === false ? (
         <div className="h-screen flex ">
-          <div className="w-full max-w-md m-auto  py-10 px-16 login">
+          <div className="login">
             <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
               REGISTER
             </h1>
@@ -75,7 +74,7 @@ const Signin = () => {
               <div className="flex justify-center items-center mt-6">
                 <button
                   type="submit"
-                  className="py-2 px-4 text-sm text-white rounded border border-green  focus:border-red"
+                  className="py-2 px-4 rounded btn-block"
                 >
                   Register
                 </button>

@@ -7,7 +7,6 @@ import PersonalFiles from "../B_Form/personalFiles";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
-
 function B_Profile() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);

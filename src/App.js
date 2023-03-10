@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
@@ -59,16 +59,15 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [login, setLogin] = useState(false);
   useEffect(() => {
-    
     if (
       window.sessionStorage.getItem("user") ||
       window.localStorage.getItem("user")
     ) {
       setLogin(true);
-    }else{
-      setLogin(false)
+    } else {
+      setLogin(false);
     }
-  },[isLoggedIn]);
+  }, [isLoggedIn]);
 
   let route;
 

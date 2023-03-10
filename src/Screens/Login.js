@@ -56,8 +56,8 @@ const Login = ({ setIsLoggedIn }) => {
   return (
     <div className="loginPage">
       {submitting === false ? (
-        <div className="h-screen flex ">
-          <div className="w-full max-w-md m-auto  py-10 px-16 login">
+        <div className="h-screen">
+          <div className="login">
             <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
               LOGIN
             </h1>
@@ -66,7 +66,7 @@ const Login = ({ setIsLoggedIn }) => {
               <div>
                 <input
                   type="text"
-                  className={`w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                  className={`p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                   id="username"
                   placeholder="Your Username"
                   required={true}
@@ -90,7 +90,7 @@ const Login = ({ setIsLoggedIn }) => {
               <div className="flex justify-center items-center mt-6">
                 <button
                   type="submit"
-                  className="py-2 px-4 text-sm text-white rounded border border-green  focus:border-red"
+                  className="py-2 px-4 text-lg rounded btn-block"
                 >
                   Login
                 </button>
