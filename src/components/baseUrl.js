@@ -1,3 +1,3 @@
-const baseUrl = "http://localhost:3001"
+const baseUrl = "https://spathion-server-git-main-rishika-raveendran.vercel.app"
 
 export default baseUrl;
