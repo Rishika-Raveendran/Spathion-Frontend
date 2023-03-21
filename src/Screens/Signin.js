@@ -3,6 +3,7 @@ import "./login.css";
 
 import { InfinitySpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import logo from "../assets/Translogo.png";
 import { db, auth, storage } from "../Firebase";
 
 const Signin = () => {
@@ -41,9 +42,17 @@ const Signin = () => {
       {submitting === false ? (
         <div className="h-screen flex ">
           <div className="login">
-            <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-              REGISTER
-            </h1>
+            <div className="logHead">
+              <img
+                src={logo}
+                width="50"
+                height="50"
+                className="mr-2 mb-12 mt-3"
+              />
+              <h1 className="ml-2 text-2xl font-medium text-primary mt-4 mb-12 text-center">
+                REGISTER
+              </h1>
+            </div>
 
             <form onSubmit={(e) => signup(e)} id="signupForm">
               <div>
@@ -72,10 +81,7 @@ const Signin = () => {
                 Already have an account yet? <Link to="/">Login</Link>
               </div>
               <div className="flex justify-center items-center mt-6">
-                <button
-                  type="submit"
-                  className="py-2 px-4 rounded btn-block"
-                >
+                <button type="submit" className="py-2 px-4 rounded btn-block">
                   Register
                 </button>
               </div>

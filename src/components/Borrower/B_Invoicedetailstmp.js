@@ -11,7 +11,7 @@ function B_Invoicedetails() {
   const history = useHistory();
   let username;
   if (typeof window !== undefined) {
-    username = window.sessionStorage.getItem("user");
+    username = window.localStorage.getItem("user");
   }
   const nextStep = () => {
     setStep(step + 1);

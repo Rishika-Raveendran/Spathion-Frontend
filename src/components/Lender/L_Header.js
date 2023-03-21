@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { db, auth, storage } from "../../Firebase";
+import logo from "../../assets/Translogo.png";
 import "./L_CSS.css";
 
 // import { Link } from "react-router-dom";
@@ -43,12 +44,14 @@ const L_Header = ({ setIsLoggedIn }) => {
       <Container>
         <a
           style={{ display: "table-cell" }}
-          href="/"
+          href="/welcome"
           // target="_blank"
           rel="noopener noreferrer"
         >
           {/* {submitting?<p>Helloooo</p>:<p>Hiiiii</p>} */}
-          <Navbar.Brand>SPATHION</Navbar.Brand>
+          <Navbar.Brand>
+            <img src={logo} width="40" />
+          </Navbar.Brand>
         </a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -60,7 +63,7 @@ const L_Header = ({ setIsLoggedIn }) => {
               Profile
             </Nav.Link>
             <Nav.Link href="/Lender/lend" className="navlink ml-4">
-              Wallet
+              Lend
             </Nav.Link>
             <Nav.Link className="navlink ml-4">
               <button onClick={logOut}>Logout</button>

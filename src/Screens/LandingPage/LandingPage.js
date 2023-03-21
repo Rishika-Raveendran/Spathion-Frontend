@@ -10,7 +10,7 @@ const LandingPage = () => {
           <div className="intro-text">
             <div>
               <h3 className="title">WELCOME TO SPATHION</h3>
-              <p className="subtitle uppercase">CHOOSE YOUR WINDOW</p>
+              <p className="subtitle uppercase">CHOOSE YOUR ROLE</p>
             </div>
             <div className="buttonContainer">
               <a href="/lender/info">

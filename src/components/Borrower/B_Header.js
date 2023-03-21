@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { auth } from "../../Firebase";
+import logo from "../../assets/Translogo.png";
 // import { Link } from "react-router-dom";
 const B_Header = ({ setIsLoggedIn }) => {
   // Logging out----------------------------------------------------------
@@ -23,26 +24,28 @@ const B_Header = ({ setIsLoggedIn }) => {
         setIsLoggedIn(false);
         setSubmitting(false);
         setCount(1);
-        alert("Successfully logged out!")
+        alert("Successfully logged out!");
       })
 
       .catch((err) => alert("Could not logout, try again"));
   };
   useEffect(() => {
-    let i = 0;
-    if (count == 1 && submitting === false) {
-      while (i < 1000) {
-        i++;
-      }
-      history.push("/");
-    }
+    count == 1 && submitting === false
+      ? history.push("/")
+      : console.log("Loading");
   }, [count]);
   // --------------------------------------------------------------------------------------
   return (
     <Navbar expand="lg" variant="dark" className="nav">
       <Container>
-        <a style={{ display: "table-cell" }} href="/" rel="noopener noreferrer">
-          <Navbar.Brand>SPATHION</Navbar.Brand>
+        <a
+          style={{ display: "table-cell" }}
+          href="/welcome"
+          rel="noopener noreferrer"
+        >
+          <Navbar.Brand>
+            <img src={logo} width="60" />
+          </Navbar.Brand>
         </a>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

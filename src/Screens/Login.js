@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./login.css";
-import Axios from "axios";
-import baseUrl from "../components/baseUrl";
+
 import { InfinitySpin } from "react-loader-spinner";
 import { Link, useHistory } from "react-router-dom";
 import { db, auth, storage } from "../Firebase";
-import { UserContext } from "../components/UserContext";
+import logo from "../assets/Translogo.png";
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -58,10 +57,17 @@ const Login = ({ setIsLoggedIn }) => {
       {submitting === false ? (
         <div className="h-screen">
           <div className="login">
-            <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-              LOGIN
-            </h1>
-
+            <div className="logHead">
+              <img
+                src={logo}
+                width="50"
+                height="50"
+                className="mr-2 mb-12 mt-3"
+              />
+              <h1 className="ml-2 text-2xl font-medium text-primary mt-4 mb-12 text-center">
+                LOGIN
+              </h1>
+            </div>
             <form onSubmit={(e) => handleFormSubmit(e)}>
               <div>
                 <input

@@ -1,37 +1,32 @@
-import React from "react";
-import { Button,  Table, Container, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Table, Container, Form } from "react-bootstrap";
 import "./B_CSS.css";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Axios from "axios";
+import baseUrl from "../baseUrl";
 
 const B_Invoices = () => {
+  const [loans, setLoans] = useState([]);
+
+  useEffect(() => {
+    Axios.get(`${baseUrl}/loan?user=${window.localStorage.user}`)
+      .then((response) => setLoans(response.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
       <Container className="page">
         <br />
 
-        <Form>
-          <br />
-          <div>
-            <div style={{ textAlign: "center" }}>
-              <h1>List of all active loans</h1>
-            </div>
-          </div>
-          <br />
+        <div>
           <div style={{ textAlign: "center" }}>
-            <br />
-
-            <ConnectButton />
-
-            <br />
-
-            <br />
-
-            <br />
+            <h1>List of all active loans</h1>
           </div>
-          <br />
-        </Form>
-       
-          <Table striped > 
+        </div>
+
+        {loans.length !== 0 ? (
+          <Table striped>
             <thead>
               <tr>
                 <th>Sl N.o</th>
@@ -42,36 +37,24 @@ const B_Invoices = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>
-                  <Button variant="primary">Repay</Button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-
-                <td>
-                  <Button variant="primary">Repay</Button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>
-                  <Button variant="primary">Repay</Button>
-                </td>
-              </tr>
+              {loans.map((loan, index) => {
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{loan.companyName}</td>
+                    <td>{loan.invoiceAmount}</td>
+                    <td>{loan.invoiceDue}</td>
+                    <td>
+                      <Button variant="primary">Repay</Button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
+        ) : (
+          <p className="content">You have not applied for any loans</p>
+        )}
       </Container>
     </div>
   );

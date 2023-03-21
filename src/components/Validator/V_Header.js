@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { auth } from "../../Firebase";
+import logo from "../../assets/Translogo.png";
 import "./Validator.css";
 // import { Link } from "react-router-dom";
 const L_Header = ({ setIsLoggedIn }) => {
@@ -22,7 +23,7 @@ const L_Header = ({ setIsLoggedIn }) => {
           window.localStorage.removeItem("user");
         }
         setIsLoggedIn(false);
-        setSubmitting(false)
+        setSubmitting(false);
         setCount(1);
         alert("Successfully logged out!");
       })
@@ -30,20 +31,22 @@ const L_Header = ({ setIsLoggedIn }) => {
       .catch((err) => alert("Could not logout, try again"));
   };
   useEffect(() => {
-    let i = 0;
-    if (count == 1 && submitting === false) {
-      while (i < 1000) {
-        i++;
-      }
-      history.push("/");
-    }
+    count == 1 && submitting === false
+      ? history.push("/")
+      : console.log("Loading");
   }, [count]);
   // --------------------------------------------------------------------------------------
   return (
     <Navbar expand="lg" variant="dark" className="nav">
       <Container>
-        <a style={{ display: "table-cell" }} href="/" rel="noopener noreferrer">
-          <Navbar.Brand>SPATHION</Navbar.Brand>
+        <a
+          style={{ display: "table-cell" }}
+          href="/welcome"
+          rel="noopener noreferrer"
+        >
+          <Navbar.Brand>
+            <img src={logo} width="60" />
+          </Navbar.Brand>
         </a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

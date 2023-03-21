@@ -5,6 +5,7 @@ import GoBack from "../B_Form/goBack";
 import Personaldetails from "../B_Form/personaldetails";
 import PersonalFiles from "../B_Form/personalFiles";
 import { useHistory } from "react-router-dom";
+import Web3 from "web3";
 import Axios from "axios";
 
 function B_Profile() {
@@ -37,10 +38,15 @@ function B_Profile() {
       [event.target.name]: event.target.files[0],
     });
   };
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setSubmitting(true);
     var data = new FormData();
+    var web3 = new Web3(window.ethereum);
+    await window.ethereum.send("eth_requestAccounts");
+    var accounts = await web3.eth.getAccounts();
+    var walletAddress = accounts[0];
     //Appending inputs to formData
+    data.append("walletAddress", walletAddress);
     data.append("username", username);
     data.append("fullName", formData["fullName"]);
     data.append("email", formData["email"]);
