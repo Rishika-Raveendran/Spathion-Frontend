@@ -70,7 +70,7 @@ function B_Profile() {
     data.append("documents", formData["director3"]);
 
     // ---------------------Post data -----------------------
-    Axios.post("http://localhost:3001/borrower", data)
+    Axios.post(`${baseUrl}/borrower`, data)
       .then((response) => {
         console.log(response.data);
 
