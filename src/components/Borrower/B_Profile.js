@@ -7,6 +7,7 @@ import PersonalFiles from "../B_Form/personalFiles";
 import { useHistory } from "react-router-dom";
 import Web3 from "web3";
 import Axios from "axios";
+import baseUrl from "../baseUrl";
 
 function B_Profile() {
   const [step, setStep] = useState(1);
