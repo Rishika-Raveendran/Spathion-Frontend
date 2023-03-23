@@ -66,7 +66,7 @@ function B_Invoicedetails() {
 
         alert("Invoice details saved!");
         setSubmitting(false);
-        history.push("/");
+        history.push("/Borrower/mint");
       })
       .catch((error) => {
         console.error(error);
