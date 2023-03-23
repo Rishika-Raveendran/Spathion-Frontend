@@ -59,7 +59,7 @@ function B_Invoicedetails() {
     data.append("documents", formData["arpa"]);
     console.log(data);
     // ---------------------Post data -----------------------
-    Axios.post("http://localhost:3001/invoice", data)
+    Axios.post(`${baseUrl}/invoice`, data)
       .then((response) => {
         console.log(response.data);
 
