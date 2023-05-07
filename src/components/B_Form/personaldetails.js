@@ -1,22 +1,32 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import React from "react";
-import { Form, Card } from "react-bootstrap";
+import { Form, Card, Button } from "react-bootstrap";
+import connectFunctions from "../ConnectWallet";
 
-function Personaldetails({ nextStep, handleChange,inputValues }) {
+function Personaldetails({ nextStep, handleChange, inputValues }) {
+  connectFunctions.maintainWallet();
   return (
-    <div className="p-5 ">
-
+    <div className="pt-5">
       <div className="page container">
-        <div >
+        <div>
           <Card.Header>
             <h5> Personal details</h5>
           </Card.Header>
           <br />
-          <ConnectButton/>
+          {/* <ConnectButton/> */}
+          <button
+            id="connectButton"
+            onClick={() => connectFunctions.connectWallet()}
+          >
+            Connect wallet
+          </button>
+
+          <div id="walletAmount" className="text-white">
+            .
+          </div>
           <br />
 
           <br />
-
 
           <Form.Label>Full Name</Form.Label>
           <Form.Control
@@ -73,8 +83,11 @@ function Personaldetails({ nextStep, handleChange,inputValues }) {
         </div>
       </div>
       <div className="bmint">
-      <button  className="mt-3 btn" onClick={nextStep}>Next</button></div>
-      {/* <button onClick={prevStep}>Previous</button> */}
+        <button className="mb-5 btn" onClick={nextStep}>
+          Next
+        </button>
+      </div>
+      {/* <button onClick={prevStep}>Next</button> */}
     </div>
   );
 }

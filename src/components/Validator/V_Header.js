@@ -54,7 +54,7 @@ const L_Header = ({ setIsLoggedIn }) => {
             {/* ------------------------------------------------------------------------------------- */}
 
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic">Profiles</Dropdown.Toggle>
+              <Dropdown.Toggle id="dropdown-basic" className="p-0 m-0 mb-3 mb-md-0 mr-md-4">Profiles</Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="/Validator/Bprofiles">
@@ -66,7 +66,7 @@ const L_Header = ({ setIsLoggedIn }) => {
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic">
+              <Dropdown.Toggle className="p-0 m-0 mb-3 mb-md-0 mr-md-4" id="dropdown-basic">
                 Uploaded documents
               </Dropdown.Toggle>
 
@@ -87,8 +87,11 @@ const L_Header = ({ setIsLoggedIn }) => {
             <Nav.Link className="navlink" href="/Validator/transfer">
               Transfer section
             </Nav.Link>
-            <Nav.Link className="navlink ml-4">
-              <button onClick={logOut}>Logout</button>
+            <Nav.Link className="navlink" href="/Validator/whitelist">
+              Whitelist
+            </Nav.Link>
+            <Nav.Link className="navlink">
+              <button className="p-0 m-0" onClick={logOut}>Logout</button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -9,7 +9,7 @@ const connectFunctions = {
         var accounts = await web3.eth.getAccounts();
         var account = accounts[0];
 
-        console.log("Wallet address: " + account);
+        // console.log("Wallet address: " + account);
 
         document.getElementById(
           "connectButton"
@@ -26,7 +26,7 @@ const connectFunctions = {
             const etherValue = Web3.utils.fromWei(balance, "ether");
             document.getElementById(
               "walletAmount"
-            ).textContent = `${etherValue} ETH`;
+            ).textContent = `Balance: ${etherValue} BNB`;
           });
       } else {
         alert("Install Metamask extension!");
@@ -43,7 +43,7 @@ const connectFunctions = {
         var accounts = await web3.eth.getAccounts();
         var account = accounts[0];
 
-        console.log("Wallet address: " + account);
+        // console.log("Wallet address: " + account);
 
         document.getElementById(
           "connectButton"
@@ -60,7 +60,7 @@ const connectFunctions = {
             const etherValue = Web3.utils.fromWei(balance, "ether");
             document.getElementById(
               "walletAmount"
-            ).textContent = `${etherValue} ETH`;
+            ).textContent = `Balance: ${etherValue} BNB`;
           });
       }
     } catch (err) {

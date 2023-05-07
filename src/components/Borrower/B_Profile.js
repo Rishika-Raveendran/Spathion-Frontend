@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+
 import CompanyDetails from "../B_Form/companyDetails";
 // import CompanyFiles from "../B_Form/companyFiles";
 import GoBack from "../B_Form/goBack";
@@ -12,11 +14,24 @@ import baseUrl from "../baseUrl";
 function B_Profile() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [profileCreated, setProfileCreated] = useState(false);
+
+  const [profile, setProfile] = useState({});
   const history = useHistory();
   let username;
   if (typeof window !== undefined) {
     username = window.sessionStorage.getItem("user");
   }
+
+  useEffect(async () => {
+    let user = window.localStorage.user;
+    Axios.get(`${baseUrl}/borrowerStatus?user=${user}`)
+      .then((res) => {
+        setProfile(res.data);
+      })
+
+      .catch((err) => console.log(err));
+  }, [profileCreated]);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -109,74 +124,114 @@ function B_Profile() {
     director2: "",
     director3: "",
   });
+  if (profile.profileStatus) {
+    console.log("Yes");
+    let profileInfo = profile.profile[0];
+    return (
+      <Container className="goBack p-5">
+        <div
+          className="mt-5 mb-5"
+          style={{ textAlign: "center", fontSize: "large" }}
+        >
+          <h1 className="d-none d-md-block">
+            YOUR &nbsp; BORROWER&nbsp; PROFILE
+          </h1>
+          <h5 className="d-block d-md-none ">
+            YOUR &nbsp; BORROWER&nbsp; PROFILE
+          </h5>
+        </div>
+        <table className="table table-striped">
+          <tbody>
+            <tr>
+              <td>Full Name</td>
+              <td>{profileInfo.fullName}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{profileInfo.email}</td>
+            </tr>
+            <tr>
+              <td>Company Name</td>
+              <td>{profileInfo.companyName}</td>
+            </tr>
+            <tr>
+              <td>Wallet Balance</td>
+              <td id="walletAmount"></td>
+            </tr>
+          </tbody>
+        </table>
+      </Container>
+    );
+  } else {
+    switch (step) {
+      case 1:
+        return (
+          <>
+            <Personaldetails
+              nextStep={nextStep}
+              handleChange={handleChange}
+              // handleFileChange={handleFileChange}
+              inputValues={{
+                fullName: formData["fullName"],
+                email: formData["email"],
+                nationality: formData["nationality"],
+                designation: formData["designation"],
+                contactNumber: formData["contactNumber"],
+              }}
+            />
+          </>
+        );
 
-  switch (step) {
-    case 1:
-      return (
-        <>
-          <Personaldetails
+      case 2:
+        return (
+          <PersonalFiles
+            nextStep={nextStep}
+            // handleChange={handleChange}
+            inputValues={{
+              identityProof: formData["identityProof"],
+              addressProof: formData["addressProof"],
+            }}
+            handleFileChange={handleFileChange}
+            prevStep={prevStep}
+          />
+        );
+
+      case 3:
+        return (
+          <CompanyDetails
             nextStep={nextStep}
             handleChange={handleChange}
-            // handleFileChange={handleFileChange}
+            handleFileChange={handleFileChange}
             inputValues={{
-              fullName: formData["fullName"],
-              email: formData["email"],
-              nationality: formData["nationality"],
-              designation: formData["designation"],
-              contactNumber: formData["contactNumber"],
+              companyName: formData["companyName"],
+              companyAddress: formData["companyAddress"],
+              companyEmail: formData["companyEmail"],
+              companyWebsite: formData["companyWebsite"],
+              companyContactNumber: formData["companyContactNumber"],
+              certificateOfIncorporation:
+                formData["certificateOfIncorporation"],
+              MOAAOA: formData["MOAAOA"],
+              auditReport: formData["auditReport"],
+              GST: formData["GST"],
+              director1: formData["director1"],
+              director2: formData["director2"],
+              director3: formData["director3"],
             }}
+            prevStep={prevStep}
           />
-        </>
-      );
+        );
 
-    case 2:
-      return (
-        <PersonalFiles
-          nextStep={nextStep}
-          // handleChange={handleChange}
-          inputValues={{
-            identityProof: formData["identityProof"],
-            addressProof: formData["addressProof"],
-          }}
-          handleFileChange={handleFileChange}
-          prevStep={prevStep}
-        />
-      );
-
-    case 3:
-      return (
-        <CompanyDetails
-          nextStep={nextStep}
-          handleChange={handleChange}
-          handleFileChange={handleFileChange}
-          inputValues={{
-            companyName: formData["companyName"],
-            companyAddress: formData["companyAddress"],
-            companyEmail: formData["companyEmail"],
-            companyWebsite: formData["companyWebsite"],
-            companyContactNumber: formData["companyContactNumber"],
-            certificateOfIncorporation: formData["certificateOfIncorporation"],
-            MOAAOA: formData["MOAAOA"],
-            auditReport: formData["auditReport"],
-            GST: formData["GST"],
-            director1: formData["director1"],
-            director2: formData["director2"],
-            director3: formData["director3"],
-          }}
-          prevStep={prevStep}
-        />
-      );
-
-    default:
-      return (
-        <GoBack
-          formData={formData}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          onSubmit={onSubmit}
-          submitting={submitting}
-        />
-      );
+      default:
+        return (
+          <GoBack
+            formData={formData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+            onSubmit={onSubmit}
+            submitting={submitting}
+          />
+        );
+    }
   }
 }
 

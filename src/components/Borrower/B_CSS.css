@@ -24,7 +24,9 @@
 .bmint button{
   background: linear-gradient(109.6deg, rgb(217, 250, 158) 11.2%, rgb(128, 251, 174) 91.1%) !important;
   color: black;
+  margin-left:20px;
 }
+
 
 .bmint tr:hover,td:hover{
   color: rgba(255, 244, 169, 1) !important;
@@ -36,5 +38,29 @@
 }
 .page tr:hover,td:hover{
   color: rgba(255, 244, 169, 1) !important;
+
+}
+
+@media screen and (max-width:768px){
+  .page{
+    margin-bottom: 0;
+    padding-bottom:0;
+  }
+  .bmint table{
+    overflow-x: scroll;
+  }
+  #connectButton{
+    font-size: 14px;
+  }
+  
+  .bmint .applyButton{
+    margin: 0;
+    transition: translateY(0);
+    font-size: 0.9em;
+    width:10vh;
+    margin-top: 5px;
+    height: 4vh;
+    margin-bottom: 5px;
+  }
 
 }

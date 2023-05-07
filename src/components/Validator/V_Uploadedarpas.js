@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button,  Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import "./Validator.css";
 import Axios from "axios";
 import baseUrl from "../baseUrl";
+import connectFunctions from "../ConnectWallet";
 const V_Uploadedarpas = () => {
   const [arpas, setarpas] = useState([]);
   const [first, setfirst] = useState(1);
@@ -50,7 +53,7 @@ const V_Uploadedarpas = () => {
       })
       .catch((err) => alert("Rejection cancelled. Try again"));
   };
-
+  connectFunctions.maintainWallet();
   // --------------------------------------------------------------------------------
   return (
     <div className="page">
@@ -61,38 +64,47 @@ const V_Uploadedarpas = () => {
             <h3>List of all uploaded ARPA's</h3>
           </div>
         </div>
-        <div className="my-5">
-          <ConnectButton />
+        <div>
+          {/* <ConnectButton /> */}
+          <button
+            id="connectButton"
+            className="mt-4"
+            onClick={() => connectFunctions.connectWallet()}
+          >
+            Connect wallet
+          </button>
         </div>
+        <div id="walletAmount" className="text-white"></div>
 
         {arpas.length > 0 ? (
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Sl N.o</th>
-                <th>ARPA's</th>
-                <th>Approve</th>
-                <th>Reject</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table className="mt-4 mt-md-4">
+            <Thead>
+              <Tr>
+                <Th>Sl No.</Th>
+                <Th>ARPA's</Th>
+                <Th>Approve</Th>
+                <Th>Reject</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
               {arpas.map((arpa, index) => {
                 return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{arpa.companyName}</td>
+                  <Tr className="mb-4  border border-white rounded mb-md-7">
+                    <Td className="p-2">{index + 1}</Td>
+                    <Td className="p-2">{arpa.companyName}</Td>
 
-                    <td>
+                    <Td className="p-2">
                       <Button
                         variant="primary"
+                        className="approveButton"
                         onClick={() => {
                           handleApproval(arpa._id);
                         }}
                       >
                         Approve
                       </Button>
-                    </td>
-                    <td>
+                    </Td>
+                    <Td className="p-2">
                       <Button
                         className="reject"
                         onClick={() => {
@@ -101,11 +113,11 @@ const V_Uploadedarpas = () => {
                       >
                         Reject
                       </Button>
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 );
               })}
-            </tbody>
+            </Tbody>
           </Table>
         ) : (
           <p className="content text-white">No unverified invoices</p>

@@ -69,6 +69,7 @@
 @media screen and (max-width: 768px) {
   .login {
     background-color: transparent;
+    
   }
   .login input {
     width: 80vw;

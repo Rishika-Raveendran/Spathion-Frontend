@@ -69,8 +69,8 @@ const B_Header = ({ setIsLoggedIn }) => {
               Loans{" "}
             </Nav.Link>
 
-            <Nav.Link className="navlink ml-4">
-              <button onClick={logOut}>Logout</button>
+            <Nav.Link className="navlink ">
+              <button className="p-0 m-0" onClick={logOut}>Logout</button>
             </Nav.Link>
             {/* <NavDropdown title="Name" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>

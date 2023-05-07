@@ -1,9 +1,11 @@
 import React from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import "./Validator.css"
+import "./Validator.css";
+import connectFunctions from "../ConnectWallet";
 
 const V_Invoicedetails = () => {
+  connectFunctions.maintainWallet();
   return (
     <div className="page">
       <Container>
@@ -14,8 +16,15 @@ const V_Invoicedetails = () => {
           </div>
         </div>
         <div className="my-5">
-          <ConnectButton />
+          {/* <ConnectButton /> */}
+          <button
+            id="connectButton"
+            onClick={() => connectFunctions.connectWallet()}
+          >
+            Connect wallet
+          </button>
         </div>
+        <div id="walletAmount" className="text-white"></div>
         <Table striped bordered hover className="bmint">
           <thead>
             <tr>
@@ -34,8 +43,7 @@ const V_Invoicedetails = () => {
                 <Button variant="primary">Approve</Button>
               </td>
               <td>
-              <Button className="reject">Reject</Button>
-
+                <Button className="reject">Reject</Button>
               </td>
             </tr>
             <tr>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Table, Form, Container } from "react-bootstrap";
+import {  Form, Container } from "react-bootstrap";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import Axios from "axios";
 import baseUrl from "../baseUrl";
 const V_Approvedinvoices = () => {
@@ -32,27 +34,27 @@ const V_Approvedinvoices = () => {
       </Container>
       <Container>
         {invoices.length > 0 ? (
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Invoice no.</th>
+          <Table className="mt-4">
+            <Thead>
+              <Tr>
+                <Th>Invoice no.</Th>
 
-                <th>Company Name</th>
-                <th>Loan amount</th>
-              </tr>
-            </thead>
+                <Th>Company Name</Th>
+                <Th>Loan amount</Th>
+              </Tr>
+            </Thead>
 
-            <tbody>
+            <Tbody>
               {invoices.map((invoice, index) => {
                 return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{invoice.companyName}</td>
-                    <td>{invoice.loanRequired}</td>
-                  </tr>
+                  <Tr className="mb-4  border border-white rounded mb-md-7">
+                    <Td className="p-2">{index + 1}</Td>
+                    <Td className="p-2">{invoice.companyName}</Td>
+                    <Td className="p-2">{invoice.loanRequired}</Td>
+                  </Tr>
                 );
               })}
-            </tbody>
+            </Tbody>
           </Table>
         ) : (
           <p className="text-white content">No approved invoices</p>

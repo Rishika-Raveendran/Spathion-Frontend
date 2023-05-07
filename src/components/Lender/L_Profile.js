@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Container } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
 // import { useForm } from "react-hook-form";
@@ -13,6 +13,10 @@ const L_Profile = () => {
   const [nationality, setNationality] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [selectedFile, setFile] = useState(false);
+  const [profileCreated, setProfileCreated] = useState(false);
+
+  const [profile, setProfile] = useState({});
+
   const formRef = useRef(null);
   let username;
   if (typeof window !== undefined) {
@@ -58,7 +62,7 @@ const L_Profile = () => {
             Axios.post(`${baseUrl}/lender`, obj)
               .then(() => {
                 setSubmitting(false);
-
+                setProfileCreated(true);
                 alert("Lender profile created!");
                 formRef.current.reset();
               })
@@ -67,6 +71,7 @@ const L_Profile = () => {
                 setSubmitting(false);
                 formRef.current.reset();
               });
+
             // ---------------------------------------------------------------------------
           })
           .catch((err) => {
@@ -76,79 +81,127 @@ const L_Profile = () => {
     );
   };
 
-  return (
-    <div className="page">
-      {submitting === false ? (
-        <Container>
-          <Form onSubmit={(e) => functionSubmit(e)} ref={formRef}>
-            <br />
-            <div>
-              <div style={{ textAlign: "center", fontSize: "large" }}>
-                <h1> PROFILE</h1>
-              </div>
+  useEffect(async () => {
+    let user = window.localStorage.user;
+    Axios.get(`${baseUrl}/profileStatus?user=${user}`)
+      .then((res) => {
+        setProfile(res.data);
+      })
 
-              <div style={{ fontSize: "small" }}>
-                <h5>Please fill the following details:</h5>
-              </div>
-            </div>
-            <br />
-            <div className="CSS2">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control
-                type="text"
-                // placeholder="Full Name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-              <br />
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  // placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Form.Text className="text-muted">
-                  (We'll never share your email with anyone else)
-                </Form.Text>
-              </Form.Group>
+      .catch((err) => console.log(err));
+  }, [profileCreated]);
 
-              <Form.Label>Nationality</Form.Label>
-              <Form.Control
-                type="text"
-                // placeholder="Country name"
-                className="myInput"
-                value={nationality}
-                onChange={(e) => setNationality(e.target.value)}
-              />
-              <br />
-              {/* ---------------------------------------------------------------  */}
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Upload an identity proof</Form.Label>
-                <Form.Control type="file" onChange={handleFileChange} />
-                {selectedFile && <p>{selectedFile.name}</p>}
-              </Form.Group>
-              {/* ------------------------------------------------------------------  */}
-
-              <br />
-
-              <button type="submit">Submit</button>
-              <br />
-            </div>
-            <br />
-          </Form>
-        </Container>
-      ) : (
-        <div className="content">
-          <div>
-            <p>Uploading your details...</p>
-          </div>
-          <InfinitySpin width="200" color="#4cb8c4" />
+  if (profile.profileStatus) {
+    console.log("Yes");
+    let profileInfo = profile.profile[0];
+    return (
+      <Container className="goBack p-5">
+        <div
+          className="mt-5 mb-5"
+          style={{ textAlign: "center", fontSize: "large" }}
+        >
+          <h1 className="d-none d-md-block">
+            YOUR &nbsp; LENDER&nbsp; PROFILE
+          </h1>
+          <h5 className="d-block d-md-none ">
+            YOUR &nbsp; LENDER&nbsp; PROFILE
+          </h5>
         </div>
-      )}
-    </div>
-  );
+        <table className="table table-striped">
+          <tbody>
+            <tr>
+              <td>Full Name</td>
+              <td>{profileInfo.fullName}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{profileInfo.email}</td>
+            </tr>
+            <tr>
+              <td>Nationality</td>
+              <td>{profileInfo.nationality}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Container>
+    );
+  } else {
+    return (
+      <div className="page">
+        {submitting === false ? (
+          <Container>
+            <Form onSubmit={(e) => functionSubmit(e)} ref={formRef}>
+              <br />
+              <div>
+                <div style={{ textAlign: "center", fontSize: "large" }}>
+                  <h1> PROFILE</h1>
+                </div>
+
+                <div style={{ fontSize: "small" }}>
+                  <h5 className="ml-1 md:ml-0">
+                    Please fill the following details:
+                  </h5>
+                </div>
+              </div>
+              <br />
+              <div className="CSS2">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  // placeholder="Full Name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+                <br />
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    // placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <Form.Text className="text-muted">
+                    (We'll never share your email with anyone else)
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Label>Nationality</Form.Label>
+                <Form.Control
+                  type="text"
+                  // placeholder="Country name"
+                  className="myInput"
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
+                />
+                <br />
+                {/* ---------------------------------------------------------------  */}
+                <Form.Group controlId="formFile" className="mb-3">
+                  <Form.Label>Upload an identity proof</Form.Label>
+                  <Form.Control type="file" onChange={handleFileChange} />
+                  {selectedFile && <p>{selectedFile.name}</p>}
+                </Form.Group>
+                {/* ------------------------------------------------------------------  */}
+
+                <br />
+
+                <button type="submit">Submit</button>
+                <br />
+              </div>
+              <br />
+            </Form>
+          </Container>
+        ) : (
+          <div className="content">
+            <div>
+              <p>Uploading your details...</p>
+            </div>
+            <InfinitySpin width="200" color="#4cb8c4" />
+          </div>
+        )}
+      </div>
+    );
+  }
 };
 
 export default L_Profile;

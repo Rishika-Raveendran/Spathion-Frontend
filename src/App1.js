@@ -43,7 +43,7 @@ import LogoAnimate from "./Screens/LogoAnimate";
 
 
 const { chains, provider } = configureChains(
-  [mainnet, polygon, goerli, optimism],
+  [mainnet, polygon, goerli],
   [publicProvider()]
 );
 const { connectors } = getDefaultWallets({

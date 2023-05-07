@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, Card, Container } from "react-bootstrap";
+import { Button, Form, Card, Container } from "react-bootstrap";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import "./B_CSS.css";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Axios from "axios";
 import baseUrl from "../baseUrl";
+import connectFunctions from "../ConnectWallet";
 
 const B_Mint = () => {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -33,6 +36,7 @@ const B_Mint = () => {
       })
       .catch((err) => console.log(err));
   };
+  connectFunctions.maintainWallet();
 
   return (
     <div className="page">
@@ -48,8 +52,15 @@ const B_Mint = () => {
           <div style={{ textAlign: "center" }}>
             <br />
 
-            <ConnectButton />
-
+            {/* <ConnectButton /> */}
+            <Button
+              id="connectButton"
+              onClick={() => connectFunctions.connectWallet()}
+            >
+              Connect wallet
+            </Button>
+          </div>
+          <div id="walletAmount" className="text-white">
             <br />
 
             <br />
@@ -59,52 +70,55 @@ const B_Mint = () => {
           <br />
         </Form>
       </Container>
-      <Container className="goBack bmint">
-        <Table striped>
-          <thead>
-            <tr>
-              <th>Sl N.o</th>
+      <Container className="goBack">
+        <Table className="mt-0 mt-md-5">
+          <Thead className="mb-4 mb-md-7 p-2">
+            <Tr>
+              <Th>Sl N.o</Th>
 
-              <th>Date of invoice</th>
-              <th>Name</th>
-              <th>Supplier info</th>
-              <th>Amount</th>
-              <th>Due date</th>
-              <th>Apply</th>
-            </tr>
-          </thead>
-          <tbody>
+              <Th>Date of invoice</Th>
+              <Th>Name</Th>
+              <Th>Supplier info</Th>
+              <Th>Amount</Th>
+              <Th>Due date</Th>
+              <Th>Apply</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
             {invoiceList.length !== 0 ? (
               invoiceList.map((invoice, index) => {
                 return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{invoice.invoiceDate}</td>
-                    <td>{invoice.companyName}</td>
-                    <td>{invoice.supplierInvoice}</td>
-                    <td>{invoice.invoiceAmount}</td>
-                    <td>{invoice.invoiceDue}</td>
-                    <td>
-                      {invoice.loanApplied ? (
-                        <p className="text-white">Loan Applied</p>
-                      ) : (
-                        <Button
-                          variant="success"
-                          onClick={() => {
-                            handleApply(invoice._id);
-                          }}
-                        >
-                          Apply
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
+                  <>
+                    <Tr className="mb-4  border border-white rounded mb-md-7 ">
+                      <Td className="p-2">{index + 1}</Td>
+                      <Td className="p-2">{invoice.invoiceDate}</Td>
+                      <Td className="p-2">{invoice.companyName}</Td>
+                      <Td className="p-2">{invoice.supplierInvoice}</Td>
+                      <Td className="p-2">{invoice.invoiceAmount}</Td>
+                      <Td className="p-2">{invoice.invoiceDue}</Td>
+                      <Td className="p-2">
+                        {invoice.loanApplied ? (
+                          <p className="text-white">Loan Applied</p>
+                        ) : (
+                          <Button
+                            className="applyButton"
+                            variant="success"
+                            onClick={() => {
+                              handleApply(invoice._id);
+                            }}
+                          >
+                            Apply
+                          </Button>
+                        )}
+                      </Td>
+                    </Tr>
+                  </>
                 );
               })
             ) : (
               <div>No data</div>
             )}
-          </tbody>
+          </Tbody>
         </Table>
       </Container>
     </div>

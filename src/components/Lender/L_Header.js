@@ -8,7 +8,7 @@ import "./L_CSS.css";
 // import { Link } from "react-router-dom";
 
 const L_Header = ({ setIsLoggedIn }) => {
-  // const { user, setUser } = useContext(UserContext);
+ 
   // Logging out----------------------------------------------------------
   const [submitting, setSubmitting] = useState(false);
   const [count, setCount] = useState(0);
@@ -59,14 +59,14 @@ const L_Header = ({ setIsLoggedIn }) => {
             <Nav.Link href="/Lender/info" className="navlink ">
               Instructions
             </Nav.Link>
-            <Nav.Link href="/Lender/profile" className="navlink ml-4">
+            <Nav.Link href="/Lender/profile" className="navlink ml-0 ml-md-4">
               Profile
             </Nav.Link>
-            <Nav.Link href="/Lender/lend" className="navlink ml-4">
+            <Nav.Link href="/Lender/lend" className="navlink ml-0 ml-md-4">
               Lend
             </Nav.Link>
-            <Nav.Link className="navlink ml-4">
-              <button onClick={logOut}>Logout</button>
+            <Nav.Link className="navlink ml-0 ml-md-4">
+              <button className="p-0 m-0" onClick={logOut}>Logout</button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
